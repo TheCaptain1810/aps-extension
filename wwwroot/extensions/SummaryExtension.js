@@ -1,8 +1,9 @@
-import { BaseExtension } from "./BaseExtension";
+import { BaseExtension } from "./BaseExtension.js";
 
 class SummaryExtension extends BaseExtension {
   constructor(viewer, options) {
     super(viewer, options);
+    this._button = null;
   }
 
   load() {
@@ -13,8 +14,23 @@ class SummaryExtension extends BaseExtension {
 
   unload() {
     super.unload();
+    if (this._button) {
+      this.removeToolbarButton(this._button);
+      this._button = null;
+    }
     console.log("SummaryExtension unloaded");
     return true;
+  }
+
+  onToolbarCreated() {
+    this._button = this.createToolbarButton(
+      "summary-button",
+      "https://img.icons8.com/small/32/brief.png",
+      "Show Summary"
+    );
+    this._button.onClick = () => {
+      //TODO
+    };
   }
 
   onModelLoaded(model) {
