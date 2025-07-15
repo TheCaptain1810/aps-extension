@@ -45,4 +45,42 @@ export class BaseExtension extends Autodesk.Viewing.Extension {
   onSelectionChanged(model, dbids) {}
 
   onIsolationChanged(model, dbids) {}
+
+  findLeafNodes(model) {
+    return new Promise((resolve, reject) => {
+      model.getObjectTree((tree) => {
+        const leaves = [];
+        tree.enumNodeChildren(
+          tree.getRootId(),
+          (node) => {
+            if (tree.getChildCount(node) === 0) {
+              leaves.push(node);
+            }
+          },
+          true
+        );
+        resolve(leaves);
+      }, reject);
+    });
+  }
+
+  async findPropertyNames(model) {
+    const nodes = await this.findLeafNodes(model);
+    return new Promise((resolve, reject) => {
+      model.getBulkProperties(
+        nodes,
+        {},
+        (results) => {
+          let propNames = new Set();
+          results.forEach((result) => {
+            result.properties.forEach((prop) => {
+              propNames.add(prop.displayName);
+            });
+          });
+          resolve(Array.from(propNames.values()));
+        },
+        reject
+      );
+    });
+  }
 }
