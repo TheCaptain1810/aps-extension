@@ -3,6 +3,7 @@ import "./extensions/LoggerExtension.js";
 import "./extensions/SummaryExtension.js";
 import "./extensions/HistogramExtension.js";
 import "./extensions/DataGridExtension.js";
+import "./extensions/SelectedIdExtension.js";
 
 async function getAccessToken(callback) {
   try {
@@ -30,6 +31,7 @@ export function initViewer(container) {
             "SummaryExtension",
             "HistogramExtension",
             "DataGridExtension",
+            "SelectedIdExtension",
           ],
         };
         const viewer = new Autodesk.Viewing.GuiViewer3D(container, config);
