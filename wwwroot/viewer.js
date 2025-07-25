@@ -4,6 +4,7 @@ import "./extensions/SummaryExtension.js";
 import "./extensions/HistogramExtension.js";
 import "./extensions/DataGridExtension.js";
 import "./extensions/SelectedIdExtension.js";
+import "./extensions/MultiLevelsExtension.js";
 
 async function getAccessToken(callback) {
   try {
@@ -27,11 +28,13 @@ export function initViewer(container) {
         const config = {
           extensions: [
             "Autodesk.DocumentBrowser",
+            "Autodesk.AEC.LevelsExtension",
             "LoggerExtension",
             "SummaryExtension",
             "HistogramExtension",
             "DataGridExtension",
             "SelectedIdExtension",
+            "MultiLevelsExtension",
           ],
         };
         const viewer = new Autodesk.Viewing.GuiViewer3D(container, config);
