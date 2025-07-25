@@ -37,7 +37,7 @@ export class MultiLevelsPanel extends Autodesk.Viewing.UI.DockingPanel {
       <div class="multi-levels-content">
         <div class="control-section" style="margin-bottom: 20px;">
           <h4 style="margin: 0 0 12px 0; color: #333; font-size: 14px; font-weight: 600;">Level Controls</h4>
-          <div class="button-group" style="display: flex; gap: 6px; margin-bottom: 10px;">
+          <div class="button-group" style="display: flex; gap: 6px;">
             <button id="select-all-btn" class="control-button" 
                     style="flex: 1; background: #0696D7; color: white; border: none; padding: 8px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; transition: background-color 0.2s;">
               Select All
@@ -45,16 +45,6 @@ export class MultiLevelsPanel extends Autodesk.Viewing.UI.DockingPanel {
             <button id="clear-all-btn" class="control-button"
                     style="flex: 1; background: #f44336; color: white; border: none; padding: 8px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; transition: background-color 0.2s;">
               Clear All
-            </button>
-          </div>
-          <div class="button-group" style="display: flex; gap: 6px;">
-            <button id="isolate-btn" class="control-button"
-                    style="flex: 1; background: #4CAF50; color: white; border: none; padding: 8px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; transition: background-color 0.2s;">
-              Isolate Levels
-            </button>
-            <button id="show-all-btn" class="control-button"
-                    style="flex: 1; background: #9E9E9E; color: white; border: none; padding: 8px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; transition: background-color 0.2s;">
-              Show All
             </button>
           </div>
         </div>
@@ -103,30 +93,6 @@ export class MultiLevelsPanel extends Autodesk.Viewing.UI.DockingPanel {
     });
     clearAllBtn.addEventListener("mouseleave", () => {
       clearAllBtn.style.backgroundColor = "#f44336";
-    });
-
-    // Isolate button
-    const isolateBtn = this.content.querySelector("#isolate-btn");
-    isolateBtn.addEventListener("click", () => {
-      this.extension.isolateSelectedLevels();
-    });
-    isolateBtn.addEventListener("mouseenter", () => {
-      isolateBtn.style.backgroundColor = "#43A047";
-    });
-    isolateBtn.addEventListener("mouseleave", () => {
-      isolateBtn.style.backgroundColor = "#4CAF50";
-    });
-
-    // Show All button
-    const showAllBtn = this.content.querySelector("#show-all-btn");
-    showAllBtn.addEventListener("click", () => {
-      this.extension.showAll();
-    });
-    showAllBtn.addEventListener("mouseenter", () => {
-      showAllBtn.style.backgroundColor = "#757575";
-    });
-    showAllBtn.addEventListener("mouseleave", () => {
-      showAllBtn.style.backgroundColor = "#9E9E9E";
     });
   }
 
